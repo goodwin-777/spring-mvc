@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+		<html xmlns:th ="www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Appointment Booking/department</title>
+		<link rel="stylesheet" th:href="@{css/style.css}">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    	<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<nav class="navbar navbar-dark bg-black pt-5 pb-5" >
+			<div class="container">
+				<a href="#" class="navbar-brand"><h1>Multispeciality Hospital</h1></a>
+				<button class="navbar-toggler">
+					<div class="navbar-toggler-icon" data-bs-toggle="collapse"
+					 data-bs-target="#nav" aria-controls="nav" aria-label="Expand-navigation"></div>
+				</button>
+				<div class="collapse navbar-collapse" id="nav">
+					<ul class="navbar-nav">
+						<li class="nav-item ms-auto pt-3">
+							<a th:href="@{/}" class="nav-link">Home</a>
+						</li>
+						<li class="nav-item ms-auto">
+							<a href="#" th:href="@{/updateUser}" class="nav-link text-secondary ">Profile</a>
+						</li>
+						<li class="nav-item ms-auto">
+							<a href="#" th:href="@{/appointments}" class="nav-link text-secondary ">Appointments</a>
+						</li>
+						<li class="nav-item ms-auto">
+							<a href="#" th:href="@{/logoutHandler}" class="nav-link text-secondary">
+								<label>
+									<form th:action="@{/logout}" method="post">
+										<button class="btn btn-black text-secondary p-0 m-0" type="submit">Logout</button>
+									</form>
+								</label>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container-fluid bg-dark"   style="min-height: 718px;"> 
+			<div class="row" >
+				<div class="col">
+					<div class="container d-flex justify-content-center mb-3 pt-3 pb-4 rounded-4">
+						<div>
+							<h2 class="text-light" th:text="${department.dName}"></h2>
+							<div th:each=" doctor: ${department.doctors}" class="text-light">
+								<div class="col" style="height: 100px; width: 700px;">
+									<div class="row">
+										<div class="col mt-4 bg-light rounded-start-2">
+											<h3 th:text="${doctor.firstName + ' ' + doctor.lastName}" class="form-label mt-3 text-black"></h3>
+										</div>
+										<div class="col mt-4 bg-light rounded-end-2">
+											<a th:href="@{/appointmentBookings/doctors/{id} (id = ${doctor.id}) }"><button class="btn btn-dark btn-bg mt-3 me-3 float-end">Select</button></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</body>
+</html>
